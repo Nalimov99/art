@@ -1271,6 +1271,8 @@ h4 {
   order: -1;
   max-width: 80px;
 }
+
+
 @media (max-width: 1399px) {
   .paints {
     display: none;

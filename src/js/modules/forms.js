@@ -54,15 +54,12 @@ const forms = () => {
             const formData = new FormData(item),
                 json = JSON.stringify(Object.fromEntries(formData));
             let itemHeight = getComputedStyle(item, null).height;
-            console.log(itemHeight);
             messageDiv.style.minHeight = itemHeight;
             item.parentNode.style.height = getComputedStyle(item).height;
-            item.classList.add('fadeOut', 'animated');
+            item.style.display = "none";
             messageDiv.style.display = "flex";
             messageDiv.classList.add('fadeInUp', 'animated');
-            setTimeout(() => {
-                item.style.display = "none";
-            }, 400);
+            
 
 
             item.parentNode.appendChild(messageDiv);
@@ -83,7 +80,6 @@ const forms = () => {
                 clearInputs();
                 setTimeout(() => {
                     messageDiv.classList.remove('fadeInUp');
-                    item.classList.remove('fadeOut');
                     messageDiv.style.display = "none";
                     item.style.display = "block";
                     item.parentNode.style.height = "";
