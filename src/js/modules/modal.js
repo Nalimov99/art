@@ -54,7 +54,7 @@ const modal = function () {
                 }
             });
 
-            if (!display) {
+            if (!display && !btnPressed) {
                 document.querySelector(selector).style.display = 'block';
                 document.body.style.overflow = "hidden";
                 const scroll = calcScrollWidth();

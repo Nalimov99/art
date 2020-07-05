@@ -1,11 +1,14 @@
 const forms = () => {
     const forms = document.querySelectorAll('form'),
-        inputs = document.querySelectorAll('input');
+        inputs = document.querySelectorAll('input'),
+        textArea = document.querySelectorAll('textarea');
+        
 
     let messageDiv = document.createElement('div'),
         messageImg = document.createElement('img');
 
-
+    const upload = document.querySelectorAll('[name=upload]'),
+    chooseFile = document.querySelectorAll('[name=choose_file]');
 
 
     const statusText = {
@@ -39,17 +42,23 @@ const forms = () => {
         inputs.forEach(item => {
             item.value = "";
         });
+        textArea.forEach(item => {
+            item.value = "";
+        });
     }
 
     forms.forEach(item => {
-        console.log(item);
         item.addEventListener('submit', (e) => {
             e.preventDefault();
-            console.log(e.target);
 
             const formData = new FormData(item),
                 json = JSON.stringify(Object.fromEntries(formData));
+            let itemHeight = getComputedStyle(item, null).height;
+            console.log(itemHeight);
+            messageDiv.style.minHeight = itemHeight;
+            item.parentNode.style.height = getComputedStyle(item).height;
             item.classList.add('fadeOut', 'animated');
+            messageDiv.style.display = "flex";
             messageDiv.classList.add('fadeInUp', 'animated');
             setTimeout(() => {
                 item.style.display = "none";
@@ -72,10 +81,37 @@ const forms = () => {
             })
             .finally(() => {
                 clearInputs();
+                setTimeout(() => {
+                    messageDiv.classList.remove('fadeInUp');
+                    item.classList.remove('fadeOut');
+                    messageDiv.style.display = "none";
+                    item.style.display = "block";
+                    item.parentNode.style.height = "";
+                    chooseFile.forEach(item => {
+                        item.textContent = 'Файл не выбран';
+                    });
+                }, 7000);
             });
 
         });
     }); 
+
+    upload.forEach((item, index)=> {
+        item.addEventListener('input', () => {
+            const fullFileName = item.files[0].name,
+            fileExtension = fullFileName.split('.')[fullFileName.split('.').length - 1],
+            fileName = fullFileName.split('.')[0];
+            let name = "";
+            if(fileName.length >= 7) {
+                name = fileName.substring(0, 8) + "...";
+            } else {
+                name = fileName + ".";
+            }
+
+            chooseFile[index].textContent = name + fileExtension;
+            
+        });
+    });
 };
 
 export default forms;
