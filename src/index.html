@@ -174,34 +174,6 @@
 						<a href="#">Подробнее</a>
 					</div>
 				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-					<div class=styles-block>
-						<img src=assets/img/styles-5.jpg alt>
-						<h4>Пастелью</h4>
-						<a href="#">Подробнее</a>
-					</div>
-				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-					<div class=styles-block>
-						<img src=assets/img/styles-6.jpg alt>
-						<h4>Поп-арт</h4>
-						<a href="#">Подробнее</a>
-					</div>
-				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-					<div class=styles-block>
-						<img src=assets/img/styles-7.png alt>
-						<h4>Фотомозаика</h4>
-						<a href="#">Подробнее</a>
-					</div>
-				</div>
-				<div class="hidden-lg hidden-md hidden-sm hidden-xs styles-2">
-					<div class=styles-block>
-						<img src=assets/img/styles-8.jpg alt>
-						<h4>Шарж</h4>
-						<a href="#">Подробнее</a>
-					</div>
-				</div>
 			</div>
 			<button class="button button-transparent button-styles">Посмотреть больше стилей</button>
 		</div>
@@ -231,31 +203,31 @@
 			<h2>Рассчитайте стоимость и получите скидку 30%</h2>
 			<div class=row>
 				<div class="col-md-4 col-offset-1">
-					<form class=form>
+					<form class=form data-calc>
 						<h4>Загрузите свое фото</h4>
 						<div class=file_upload>
 							<button type=button>Загрузить фотографию</button>
 							<div name = "choose_file">Файл не выбран</div>
 							<input type=file name=upload>
 						</div>
-						<select id=size>
-							<option >Выберите размер картины</option>
-							<option >40x50</option>
-							<option >50x70</option>
-							<option >70x70</option>
-							<option >70x100</option>
+						<select id=size name="size">
+							<option value="0">Выберите размер картины</option>
+							<option value="1000">40x50</option>
+							<option value="2000">50x70</option>
+							<option value="2500">70x70</option>
+							<option value="3000">70x100</option>
 						</select>
-						<select id=material>
-							<option >Выберите материал картины</option>
-							<option   title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
-							<option   title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
-							<option  title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
+						<select id=material name="material">
+							<option value="0">Выберите материал картины</option>
+							<option value="1000"  title="Изящный, позволяет легко создавать текстуру, подходит для декоративных картин маслом.">Холст из волокна</option>
+							<option  value="1500" title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
+							<option value="2000" title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
-						<select id=options>
-							<option >Дополнительные услуги</option>
-							<option >Покрытие арт-гелем</option>
-							<option >Экспресс-изготовление</option>
-							<option >Доставка готовых работ </option>
+						<select id=options name="options">
+							<option value="0">Дополнительные услуги</option>
+							<option value="1000">Покрытие арт-гелем</option>
+							<option value="2000">Экспресс-изготовление</option>
+							<option value="200">Доставка готовых работ </option>
 						</select>
 						<input type="text" class="promocode" placeholder="Введите ваш промокод">
 						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
@@ -659,6 +631,12 @@
 			</div>
 		</div>
 	</footer>
+	<div class="popup-error">
+		<div class="popup-content">
+			<img src="assets/img/fail.png" alt="fail">
+			<div class="error-messag">Произошла ошибка отправки данных</div>
+		</div>
+	</div>
 	<div class="popup-consultation animated" data-modal>
 		<div class=popup-dialog>
 			<div class=popup-content>

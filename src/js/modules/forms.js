@@ -1,3 +1,5 @@
+import {postData} from "./services/request";
+
 const forms = () => {
     const forms = document.querySelectorAll('form'),
         inputs = document.querySelectorAll('input'),
@@ -28,15 +30,7 @@ const forms = () => {
     messageDiv.appendChild(messageImg);
     
 
-    async function postData(url, json) {
-        
-        let res = await fetch(url, {
-            method: "POST",
-            body: json
-        });
 
-        return await res;
-    }
 
     function clearInputs() {
         inputs.forEach(item => {
@@ -51,8 +45,11 @@ const forms = () => {
         item.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const formData = new FormData(item),
-                json = JSON.stringify(Object.fromEntries(formData));
+            const formData = new FormData(item);
+            if(item.hasAttribute('data-calc')) {
+                formData.append('price', document.querySelector('.calc-price').textContent);
+            }
+            
             let itemHeight = getComputedStyle(item, null).height;
             messageDiv.style.minHeight = itemHeight;
             item.parentNode.style.height = getComputedStyle(item).height;
@@ -65,12 +62,13 @@ const forms = () => {
             item.parentNode.appendChild(messageDiv);
             
 
-            postData('assets/server.php', json)
+            postData('assets/server.php', formData)
             .then(() => {
                 messageImg.src = statusImg.ok;
                 
                 messageDiv.textContent = statusText.ok;
                 messageDiv.appendChild(messageImg);
+                
             })
             .catch(() => {
                 messageDiv.textContent = statusText.fail;
