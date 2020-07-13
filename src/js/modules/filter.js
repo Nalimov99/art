@@ -23,13 +23,12 @@ const filter = () => {
                 no.classList.add('animated', 'fadeIn');
                 no.style.display = "block";
             }
-        })
+        });
 
     };
-    
     menu.addEventListener('click', (e) => {
         const target = e.target;
-        if(target && target.tagName == 'LI') {
+        if(target.tagName == 'LI') {
             items.forEach(item => item.classList.remove('active'));
             target.classList.add('active');
             filter(target.classList[0]);

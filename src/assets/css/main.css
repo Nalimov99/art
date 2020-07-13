@@ -33,6 +33,7 @@
 }
 html {
   font-size: 10px;
+  scroll-behavior: smooth;
 }
 body {
   font-family: 'Circe Regular', sans-serif;
@@ -118,6 +119,8 @@ h4 {
   cursor: auto;
   font-family: 'Circe Bold', sans-serif;
   font-size: 1.5rem;
+  z-index: 11;
+  display: none;
 }
 .header .burger img {
   width: 2rem;
@@ -189,11 +192,12 @@ h4 {
   display: none;
   position: absolute;
   background-color: #fff;
-  z-index: 10;
+  z-index: 11;
   list-style: none;
   padding: 0;
   margin: 0;
   width: 20rem;
+
 }
 .header .burger-menu li {
   padding: 2rem;
@@ -902,6 +906,12 @@ h4 {
   margin-bottom: 4rem;
   margin-top: 2rem;
 }
+.often-questions .accordion-heading span.active {
+  color: #E950D7;
+  font-weight: 900;
+  text-decoration: none;
+  border: 0;
+}
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
 }
@@ -1287,6 +1297,21 @@ h4 {
   background-color: rgba(178, 80, 188, 0.8);
 }
 
+.pageup {
+  opacity: 0;
+  width: 30px ;
+  height: 30px;
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+  z-index: 30;
+  background-color: #fff;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: 1s all;
+
+}
+
 
 
 @media (max-width: 1399px) {
@@ -1319,6 +1344,7 @@ h4 {
   .header .burger {
     padding: 2.1rem 1rem;
     font-size: 1.3rem;
+
   }
   .header .burger img {
     width: 1rem;
@@ -1410,6 +1436,7 @@ h4 {
 @media (max-width: 991px) {
   .header .burger {
     cursor: pointer;
+    display: block;
   }
   .header .burger span {
     display: none;
